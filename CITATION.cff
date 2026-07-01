@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite both the article and this archived code."
+title: "geodesic-anomaly-test: Information-geometric hypothesis testing on the categorical statistical manifold"
+abstract: >-
+  Reference implementation, simulations, and real-data (NSL-KDD) experiment for the
+  geodesic (Fisher-Rao) test statistic on the categorical statistical manifold and
+  its use for anomaly detection in decision-support systems. Reproduces every figure,
+  table, and reported statistic in the accompanying article.
+type: software
+authors:
+  - family-names: "Öztürk"
+    given-names: "Emre"
+    orcid: "https://orcid.org/0000-0001-6638-3233"
+    affiliation: "Department of Management Information Systems, Hatay Mustafa Kemal University"
+keywords:
+  - information geometry
+  - Fisher-Rao distance
+  - hypothesis testing
+  - anomaly detection
+  - decision support systems
+license: MIT
+version: "1.0.0"
+date-released: "2026-07-01"
+repository-code: "https://github.com/emreozi/geodesic-anomaly-test"
