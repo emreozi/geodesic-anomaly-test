@@ -22,27 +22,31 @@ pip install numpy scipy matplotlib
 
 | Script | Produces |
 |--------|----------|
-| `simulation.py` | point-null calibration, ROC, power (Fig. null/ROC/power) |
-| `composite_sim.py` | independence-submanifold test |
-| `curvature_sim.py` | second-order bias law + Bartlett calibration (Fig. curvature) |
-| `noncorr.py` | certifies v ≠ 4b (non-correctability) |
-| `noncorr_fig.py` | non-correctability figure |
-| `gauss_sim.py` | Gaussian/hyperbolic χ²₂ validation |
-| `nslkdd_experiment.py` | NSL-KDD real-data application |
-| `fig_nslkdd.py` | NSL-KDD figure |
-| `geom_fig.py` | manifold geometry figure |
+| `simulation.py` | point-null calibration, ROC, power, and the manifold geometry figure (`fig_null_calibration`, `fig_roc`, `fig_power`, `fig_geometry`) |
+| `curvature_sim.py` | second-order bias law + Bartlett calibration (`fig_curvature`) |
+| `composite_sim.py` | independence-submanifold test (`fig_composite`) |
+| `compbart_sim.py` | composite Bartlett correction (`fig_composite_bartlett`) |
+| `gauss_sim.py` | Gaussian/hyperbolic χ²₂ validation (`fig_gaussian`) |
+| `noncorr.py` | certifies v ≠ 4b (non-correctability numbers) |
+| `noncorr_fig.py` | non-correctability figure (`fig_noncorr`) |
+| `nslkdd_experiment.py` | NSL-KDD real-data application (numbers; saves `data/nsl_results.npz`) |
+| `fig_nslkdd.py` | NSL-KDD figure (`fig_nslkdd`) |
 
 ```bash
 python simulation.py
 python nslkdd_experiment.py
+python fig_nslkdd.py
 # ...etc
 ```
 
+Figures are written to `figs/` (created automatically) as both PDF and PNG.
 All scripts use a fixed random seed; results are deterministic.
 
 ## Data
 The NSL-KDD 20% subset is the public benchmark of Tavallaee et al. (2009),
-DOI `10.1109/CISDA.2009.5356528`. Place `KDDTrain+_20Percent.txt` under `data/`.
+DOI `10.1109/CISDA.2009.5356528`. Save the `KDDTrain+_20Percent.txt` benchmark
+as `data/nslkdd20.txt` (the filename `nslkdd_experiment.py` and `fig_nslkdd.py`
+read).
 
 ## Citation
 If you use this code, please cite the article and this archive (see
