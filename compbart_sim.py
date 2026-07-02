@@ -67,7 +67,7 @@ ax1.plot(ns,mean,"o",color="#8172B3",ms=6,label=r"simulated $\mathbb{E}[\Lambda_
 ax1.plot(nn,r+b_use/nn,"-",color="#C44E52",lw=2,label=fr"theory $r+b_{{\rm comp}}/n$, $b_{{\rm comp}}={b_use:.1f}$")
 ax1.axhline(r,color="0.5",ls=":",lw=1.2,label=fr"$r={r}$")
 ax1.set_xlabel("events per session $n$"); ax1.set_ylabel(r"$\mathbb{E}[\Lambda_n]$")
-ax1.set_title("(a) Composite bias law (Theorem 4)"); ax1.legend(frameon=False,fontsize=9)
+ax1.set_title("(a) Composite bias law"); ax1.legend(frameon=False,fontsize=9)
 ax2.plot(ns,lvlu,"-o",color="#8172B3",ms=5,label=r"uncorrected $\Lambda_n$")
 ax2.plot(ns,lvlc,"-s",color="#55A868",ms=5,label=r"Bartlett-corrected $\Lambda^*_n$")
 ax2.axhline(0.05,color="#C44E52",ls="--",lw=1.4,label="nominal 0.05")

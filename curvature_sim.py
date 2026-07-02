@@ -54,7 +54,7 @@ ax1.plot(nn,df+b/nn,"-",color="#C44E52",lw=2,
          label=fr"theory $(K\!-\!1)+b/n$, $b={b:.2f}$")
 ax1.axhline(df,color="0.5",ls=":",lw=1.2,label=fr"$K-1={df}$")
 ax1.set_xlabel("events per session $n$"); ax1.set_ylabel(r"$\mathbb{E}[\Lambda_n]$")
-ax1.set_title("(a) Second-order bias law (Theorem 3)")
+ax1.set_title("(a) Second-order bias law")
 ax1.legend(frameon=False,fontsize=9)
 
 ax2.plot(ns,lvl_unc,"-o",color="#4C72B0",ms=5,label=r"uncorrected $\Lambda_n$")
