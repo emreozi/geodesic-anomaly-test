@@ -1,6 +1,6 @@
 {
   "title": "geodesic-anomaly-test: Information-geometric hypothesis testing on the categorical statistical manifold",
-  "description": "Reference implementation, simulations, and real-data (NSL-KDD) experiment for the geodesic (Fisher-Rao) test statistic on the categorical statistical manifold and its use for anomaly detection in decision-support systems. Reproduces every figure, table, and reported statistic in the accompanying article.",
+  "description": "Reference implementation, simulations, analytic finite-sample checks, and real-data (NSL-KDD) experiment for information-geometric hypothesis testing on the categorical statistical manifold. Includes the exact relation to the Freeman-Tukey/Hellinger statistic and the revised non-correctability calculation.",
   "upload_type": "software",
   "license": "MIT",
   "creators": [

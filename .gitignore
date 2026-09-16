@@ -1,0 +1,15 @@
+.venv/
+build/
+tmp/
+__pycache__/
+*.py[cod]
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.spl
+*.synctex.gz
+data/nslkdd20.txt
+data/nsl_results.npz
+figures/*.png

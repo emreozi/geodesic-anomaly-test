@@ -1,11 +1,11 @@
-"""
-Figure for the non-correctability theorem (v != 4b).
+"""Numerical illustration of the analytic non-correctability theorem.
 
 Companion to noncorr.py: for the reference null (K=6) it plots, for the
 MEAN-corrected geodesic statistic  Lam*_n = Lam_n / (1 + b/((K-1) n)):
   (a) first-cumulant residual   n*(E[Lam*_n]  - (K-1)) -> 0   (mean corrected)
-  (b) second-cumulant residual  n*(Var[Lam*_n] - 2(K-1)) -> v - 4b != 0
-so a single scalar cannot correct both moments. Writes fig_noncorr.pdf.
+  (b) second-cumulant residual  n*(Var[Lam*_n] - 2(K-1)) -> v - 4b > 0.
+The horizontal target is the exact coefficient from the manuscript; simulation
+illustrates convergence and is not used as proof. Writes fig_noncorr_revised.pdf.
 
 Panel (a) uses the control variate Lam* - X^2 (Pearson's statistic, whose null
 mean is exactly K-1), which removes the leading chi-square fluctuation and
@@ -34,6 +34,13 @@ def bcoef(p0):
     A3 = np.sum((1 - p0) * (1 - 2 * p0) / p0)
     A4 = np.sum((1 - p0) ** 2 / p0)
     return (15 / 16) * A4 - 0.5 * A3 + (K ** 2 - 1) / 48
+
+
+def variance_residual_coef(p0):
+    """Closed-form v - 4b from Theorem 3."""
+    K = len(p0)
+    P1 = np.sum(1.0 / p0)
+    return (9 * P1 - K ** 2 - 12 * K + 4) / 6
 
 
 def fr2(p, q):
@@ -67,6 +74,7 @@ def residuals(p0, n, N, b, batch=1_000_000):
 # reference null of the simulation study (Section on simulation), K = 6
 p0 = np.array([0.30, 0.24, 0.18, 0.12, 0.09, 0.07]); p0 = p0 / p0.sum()
 K = len(p0); df = K - 1; b = bcoef(p0)
+variance_target = variance_residual_coef(p0)
 n_grid = [80, 110, 150, 200, 280, 380, 520]
 N = 2_000_000
 
@@ -91,6 +99,8 @@ ax1.legend(frameon=False, fontsize=9, loc="lower right")
 
 ax2.plot(n_grid, r2, "-o", color=PURPLE, ms=6,
          label=r"$n\,(\mathrm{Var}[\Lambda^\ast_n]-2(K-1))$")
+ax2.axhline(variance_target, color=RED, ls="--", lw=1.4,
+            label=rf"analytic $v-4b={variance_target:.2f}$")
 ax2.set_xlabel("events per session $n$")
 ax2.set_ylabel(r"$n\,(\mathrm{Var}[\Lambda^\ast_n]-2(K-1))$")
 ax2.set_title(r"(b) Variance is not: $\to v-4b \neq 0$")
@@ -98,8 +108,9 @@ ax2.set_ylim(0, max(r2) * 1.12)
 ax2.legend(frameon=False, fontsize=9, loc="upper right")
 
 fig.tight_layout()
-os.makedirs("figs", exist_ok=True)
-fig.savefig("figs/fig_noncorr.pdf", bbox_inches="tight")
-fig.savefig("figs/fig_noncorr.png", bbox_inches="tight", dpi=150)
+os.makedirs("figures", exist_ok=True)
+fig.savefig("figures/fig_noncorr_revised.pdf", bbox_inches="tight")
+fig.savefig("figures/fig_noncorr_revised.png", bbox_inches="tight", dpi=150)
 plt.close(fig)
-print("wrote figs/fig_noncorr.pdf")
+print(f"analytic v-4b = {variance_target:.6f}")
+print("wrote figures/fig_noncorr_revised.pdf")

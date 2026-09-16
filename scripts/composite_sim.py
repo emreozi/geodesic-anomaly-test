@@ -16,6 +16,8 @@ empirical marginals (the m-projection); we use it as the projection point, so
   Lambda_n = n * d_FR(p_hat, p_hat_indep)^2.
 """
 
+from pathlib import Path
+
 import numpy as np
 from scipy import stats
 import matplotlib
@@ -155,11 +157,12 @@ ax2.set_title("(b) Power: detecting induced dependence")
 ax2.legend(frameon=False, fontsize=9, loc="lower right")
 ax2.set_ylim(0, 1.02)
 fig.tight_layout()
-fig.savefig("figs/fig_composite.pdf", bbox_inches="tight")
-fig.savefig("figs/fig_composite.png", bbox_inches="tight", dpi=150)
+fig.savefig("figures/fig_composite.pdf", bbox_inches="tight")
+fig.savefig("figures/fig_composite.png", bbox_inches="tight", dpi=150)
 plt.close(fig)
 
-with open("results_composite.txt", "w") as f:
+Path("data/derived").mkdir(parents=True, exist_ok=True)
+with open("data/derived/results_composite.txt", "w") as f:
     f.write(f"K={K}, A={A}, B={B}, r={r}, n={n_events}\n")
     f.write(f"E[Lam]={Lam.mean():.3f} (target {r})\n")
     f.write(f"Var[Lam]={Lam.var():.3f} (target {2*r})\n")
@@ -171,4 +174,4 @@ with open("results_composite.txt", "w") as f:
     f.write("severity,power_FR,power_E\n")
     for s,a,b in zip(severities,pw_FR,pw_E):
         f.write(f"{s:.2f},{a:.3f},{b:.3f}\n")
-print("\nWrote figs/fig_composite.pdf and results_composite.txt")
+print("\nWrote figures/fig_composite.pdf and data/derived/results_composite.txt")

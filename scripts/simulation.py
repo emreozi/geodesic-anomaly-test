@@ -14,6 +14,8 @@ Test statistic for H0: true law = p0 :
 Everything below is computed, not assumed.
 """
 
+from pathlib import Path
+
 import numpy as np
 from scipy import stats
 import matplotlib
@@ -238,8 +240,8 @@ lns = l1 + l2
 ax3.legend(lns, [x.get_label() for x in lns], frameon=False, fontsize=8.5,
            loc="upper right")
 fig.tight_layout()
-fig.savefig("figs/fig_null_calibration.pdf", bbox_inches="tight")
-fig.savefig("figs/fig_null_calibration.png", bbox_inches="tight", dpi=150)
+fig.savefig("figures/fig_null_calibration.pdf", bbox_inches="tight")
+fig.savefig("figures/fig_null_calibration.png", bbox_inches="tight", dpi=150)
 plt.close(fig)
 
 # ----------------------------------------------------------------------
@@ -257,8 +259,8 @@ ax.set_title(f"Anomaly detection ROC (severity s={s_roc})")
 ax.legend(frameon=False, fontsize=9, loc="lower right")
 ax.set_xlim(0, 1); ax.set_ylim(0, 1.02)
 fig.tight_layout()
-fig.savefig("figs/fig_roc.pdf", bbox_inches="tight")
-fig.savefig("figs/fig_roc.png", bbox_inches="tight", dpi=150)
+fig.savefig("figures/fig_roc.pdf", bbox_inches="tight")
+fig.savefig("figures/fig_roc.png", bbox_inches="tight", dpi=150)
 plt.close(fig)
 
 # ----------------------------------------------------------------------
@@ -276,8 +278,8 @@ ax.set_title("Power comparison (Type-I error fixed)")
 ax.legend(frameon=False, fontsize=9, loc="lower right")
 ax.set_ylim(0, 1.02)
 fig.tight_layout()
-fig.savefig("figs/fig_power.pdf", bbox_inches="tight")
-fig.savefig("figs/fig_power.png", bbox_inches="tight", dpi=150)
+fig.savefig("figures/fig_power.pdf", bbox_inches="tight")
+fig.savefig("figures/fig_power.png", bbox_inches="tight", dpi=150)
 plt.close(fig)
 
 # ----------------------------------------------------------------------
@@ -328,8 +330,8 @@ ax.set_title(r"Simplex $\Delta_2$ embedded on the sphere $\;\phi(p)=2\sqrt{p}$")
 ax.legend(frameon=False, fontsize=9, loc="upper left")
 ax.view_init(elev=22, azim=35)
 fig.tight_layout()
-fig.savefig("figs/fig_geometry.pdf", bbox_inches="tight")
-fig.savefig("figs/fig_geometry.png", bbox_inches="tight", dpi=150)
+fig.savefig("figures/fig_geometry.pdf", bbox_inches="tight")
+fig.savefig("figures/fig_geometry.png", bbox_inches="tight", dpi=150)
 plt.close(fig)
 
 # distances for the illustrative pair (printed for the text)
@@ -339,7 +341,8 @@ print(f"\nIllustrative pair  d_FR = {fisher_rao(pA,pB):.4f}, "
 # ----------------------------------------------------------------------
 # Save a compact results table for the manuscript
 # ----------------------------------------------------------------------
-with open("results_summary.txt", "w") as f:
+Path("data/derived").mkdir(parents=True, exist_ok=True)
+with open("data/derived/results_summary.txt", "w") as f:
     f.write("p0 = " + ", ".join(f"{x:.3f}" for x in p0) + "\n")
     f.write(f"n_events={n_events}, K={K}, N_null={N_null}\n")
     f.write(f"E[Lam_FR]={Lam_FR_null.mean():.3f} (target {df})\n")
@@ -358,4 +361,4 @@ with open("results_summary.txt", "w") as f:
     for n,m,l in zip(n_grid,mean_curve,level_curve):
         f.write(f"{n},{m:.3f},{l:.4f}\n")
 
-print("\nAll figures written to figs/. Summary -> results_summary.txt")
+print("\nAll figures written to figures/. Summary -> data/derived/results_summary.txt")
